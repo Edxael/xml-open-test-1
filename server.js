@@ -25,13 +25,22 @@ app.get('/', function (req, res) {      // Route to serve build React-App.
  
 
 // ===[ FILE-MANIPULATIO ]============================
-console.log("Checking if directory exist...")
-let mainFolder = './00-FTP/test.txt'
-if(fs.existsSync(mainFolder)){
-    console.log("Folder && File exist")
-}else{
-    console.log("NOOOOOO Exist.....")
+let myCount = 1
+const check1 = () => {
+  console.log("\n ===================")
+  console.log(`Check No: ${myCount} if there are any files.`)
+  // let mainFolder = './00-FTP/test.txt'
+  let mainFolder = './00-FTP/'
+  if(fs.existsSync(mainFolder)){
+      console.log("File exist")
+  }else{
+      console.log("NOOOOOO Directory is EMPTY...")
+  }
+  myCount += 1
 }
+
+setInterval(() => { check1() }, 1000)
+
 
 
  
@@ -40,3 +49,16 @@ app.listen((process.env.PORT || 8080), (err) => {
     if(err){ throw err }
     console.log("Server Listening on port: 8080 ....")
 })
+
+
+
+
+// const fs = require('fs')
+// // ===[ FILE-MANIPULATIO ]============================
+// console.log("Checking if directory exist...")
+// let mainFolder = './00-FTP/test.txt'
+// if(fs.existsSync(mainFolder)){
+//     console.log("Folder && File exist")
+// }else{
+//     console.log("NOOOOOO Exist.....")
+// }
