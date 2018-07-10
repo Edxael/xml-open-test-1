@@ -22,20 +22,34 @@ app.get('/', function (req, res) {      // Route to serve build React-App.
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
- 
+
 
 // ===[ FILE-MANIPULATIO ]============================
 let myCount = 1
+
 const check1 = () => {
-  console.log("\n ===================")
-  console.log(`Check No: ${myCount} if there are any files.`)
-  // let mainFolder = './00-FTP/test.txt'
-  let mainFolder = './00-FTP/'
-  if(fs.existsSync(mainFolder)){
-      console.log("File exist")
-  }else{
-      console.log("NOOOOOO Directory is EMPTY...")
-  }
+  let sourceFolder = './00-FTP/'
+//   let storageFolder = '01-StorageDir'
+
+  fs.readdir(sourceFolder, (err, files) => {
+    if(err){ 
+        console.log("Error: ", err) 
+    }else{
+        console.log(`\n =================== \n Check: ${myCount}. Files in Folder:`)
+        console.log(files)
+
+        console.log("The name:", files[files.length -1])
+
+        // fs.copyFile(`${sourceFolder}${files[files.length -1]}`, './01-StorageDir/', (err) => {
+        //     if (err) throw err;
+        //     console.log('source.txt was copied to destination');
+        // });
+
+
+    }
+
+  })
+
   myCount += 1
 }
 
@@ -56,9 +70,26 @@ app.listen((process.env.PORT || 8080), (err) => {
 // const fs = require('fs')
 // // ===[ FILE-MANIPULATIO ]============================
 // console.log("Checking if directory exist...")
-// let mainFolder = './00-FTP/test.txt'
-// if(fs.existsSync(mainFolder)){
+// let sourceFolder = './00-FTP/test.txt'
+// if(fs.existsSync(sourceFolder)){
 //     console.log("Folder && File exist")
 // }else{
 //     console.log("NOOOOOO Exist.....")
 // }
+
+
+
+
+
+// const check1 = () => {
+//     console.log("\n ===================")
+//     console.log(`Check No: ${myCount} if there are any files.`)
+//     // let sourceFolder = './00-FTP/one.imd'
+//     let sourceFolder = './00-FTP/*.imd'
+//     if(fs.existsSync(sourceFolder)){
+//         console.log("File exist")
+//     }else{
+//         console.log("NOOOOOO Directory is EMPTY...")
+//     }
+//     myCount += 1
+//   }
